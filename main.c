@@ -200,6 +200,14 @@ void serial_readwrite_task(void *pvParameters)
 		                         portMAX_DELAY));
 	}
 }
+void task_p(void *pvParameters)
+{
+        char *taskName = (char *)pvParameters;
+        for(;;){
+            //vTaskDelay(10/portTICK_RATE_MS);
+        }
+        vTaskDelete(NULL);
+}
 
 int main()
 {
@@ -247,6 +255,11 @@ int main()
 	            (signed portCHAR *) "Serial Read/Write",
 	            512 /* stack size */, NULL,
 	            tskIDLE_PRIORITY + 10, NULL);
+
+	/* Create priodic Task */
+
+        xTaskCreate(task_p,"task1",100,NULL, 1,NULL);
+        xTaskCreate(task_p,"task2",100,NULL, 1,NULL);
 
 	/* Start running the tasks. */
 	vTaskStartScheduler();
