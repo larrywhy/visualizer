@@ -166,6 +166,7 @@ for line in lines :
 log.close()
 
 grasp = open('sched.grasp', 'w')
+c_switch = open('context_switch', 'w')
 
 for id in tasks :
 	task = tasks[id]
@@ -196,11 +197,14 @@ for event in events :
 	if event['type'] == 'task out' :
 		grasp.write('plot %f jobPreempted job%s.1 -target job%s.1\n' %
 				    (event['time'], event['task'], event['next']))
+		out_time = event['time']
 
 	elif event['type'] == 'task in' :
 		grasp.write('plot %f jobResumed job%s.1\n' %
 					(event['time'], event['task']))
-
+		in_time = event['time']
+		
+		c_switch.write('context switching! It costs %f.\n' % (in_time - out_time));
 	elif event['type'] == 'mutex give' :
 		grasp.write('plot %f jobReleasedMutex job%s.1 mutex%s\n' % (event['time'], event['task'], event['target']));
 
@@ -247,3 +251,4 @@ for id in tasks :
 					(events[-1]['time'], id))
 
 grasp.close()
+c_switch.close()

@@ -257,7 +257,6 @@ int main()
 	            tskIDLE_PRIORITY + 10, NULL);
 
 	/* Create priodic Task */
-
         xTaskCreate(task_p,"task1",100,NULL, 1,NULL);
         xTaskCreate(task_p,"task2",100,NULL, 1,NULL);
 
