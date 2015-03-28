@@ -166,7 +166,7 @@ for line in lines :
 log.close()
 
 grasp = open('sched.grasp', 'w')
-c_switch = open('context_switch', 'w')
+c_switch = open('context_switch.log', 'w')
 
 for id in tasks :
 	task = tasks[id]
