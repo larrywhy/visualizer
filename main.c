@@ -233,6 +233,7 @@ int main()
 	            (signed portCHAR *) "LED Flash",
 	            512 /* stack size */, NULL,
 	            tskIDLE_PRIORITY + 5, NULL);
+#if 0
 
 	/* Create tasks to queue a string to be written to the RS232 port. */
 	xTaskCreate(queue_str_task1,
@@ -255,10 +256,10 @@ int main()
 	            (signed portCHAR *) "Serial Read/Write",
 	            512 /* stack size */, NULL,
 	            tskIDLE_PRIORITY + 10, NULL);
-
+#endif
 	/* Create priodic Task */
-        xTaskCreate(task_p,"task1",100,NULL, 1,NULL);
-        xTaskCreate(task_p,"task2",100,NULL, 1,NULL);
+        xTaskCreate(task_p,"task1",50,NULL, 1,NULL);
+        xTaskCreate(task_p,"task2",50,NULL, 1,NULL);
 
 	/* Start running the tasks. */
 	vTaskStartScheduler();

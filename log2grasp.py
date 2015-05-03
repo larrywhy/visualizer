@@ -241,14 +241,12 @@ for event in events :
 for id in mutexes :
 	mutex = mutexes[id]
 	if mutex['acquired'] :
-		grasp.write('plot %f jobReleasedMutex job%s.1 mutex%s\n' %
-					(events[-1]['time'], mutex['last_acquire'], id));
+		grasp.write('plot %f jobReleasedMutex job%s.1 mutex%s\n'%(events[-1]['time'], mutex['last_acquire'], id));
 
 for id in tasks :
 	task = tasks[id]
 	if 'created' in task and task['created'] :
-		grasp.write('plot %f jobCompleted job%s.1\n' %
-					(events[-1]['time'], id))
+		grasp.write('plot %f jobCompleted job%s.1\n'%(events[-1]['time'], id))
 
 grasp.close()
 c_switch.close()
